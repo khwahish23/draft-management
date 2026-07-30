@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 
-
 import DraftEditor from "./components/DraftEditor";
 
 import DraftList from "./components/DraftList";
-
 
 import {
 
@@ -20,21 +18,11 @@ import {
 
   from "./services/mockApi";
 
-
 import "./App.css";
-
-
 
 function App() {
 
-
-
   const [drafts, setDrafts] = useState([]);
-
-
-
-
-  // Load drafts when website opens
 
   useEffect(() => {
 
@@ -42,112 +30,61 @@ function App() {
 
   }, []);
 
-
-
-
-
   const loadDrafts = async () => {
-
 
     const data = await fetchDrafts();
 
-
     setDrafts(data);
 
-
   };
-
-
-
-
-
-  // Create
 
   const addDraft = async (draft) => {
 
-
     await saveDraft(draft);
-
 
     loadDrafts();
 
-
   };
-
-
-
-
-
-  // Delete
 
   const removeDraft = async (id) => {
 
-
     await deleteDraft(id);
-
 
     loadDrafts();
 
-
   };
-
-
-
-
-
-  // Update
 
   const editDraft = async (draft) => {
 
+    const updated = prompt(
 
-    const updatedText = prompt(
-      "Edit your draft",
+      "Edit Draft",
+
       draft.content
+
     );
 
+    if (updated === null)
 
-
-    if (updatedText === null)
       return;
 
-
-
-
-    const updatedDraft = {
+    await updateDraft({
 
       ...draft,
 
-      content: updatedText
+      content: updated
 
-    };
-
-
-
-
-    await updateDraft(updatedDraft);
-
-
+    });
 
     loadDrafts();
 
-
-
   };
-
-
-
 
   return (
 
-
     <div className="App">
 
-
-      <h1>
-        Draft Management System
-      </h1>
-
-
+      <h1>Draft Management System</h1>
 
       <DraftEditor
 
@@ -155,11 +92,7 @@ function App() {
 
       />
 
-
-
       <hr />
-
-
 
       <DraftList
 
@@ -171,15 +104,10 @@ function App() {
 
       />
 
-
-
     </div>
-
 
   );
 
-
 }
-
 
 export default App;

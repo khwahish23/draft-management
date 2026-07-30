@@ -1,37 +1,25 @@
 import DraftCard from "./DraftCard";
 
-
 function DraftList({
     drafts,
     editDraft,
     removeDraft
 }) {
 
-
     return (
 
         <div>
 
-
-            <h2>
-                Saved Drafts
-            </h2>
-
-
+            <h2>Saved Drafts</h2>
 
             {
-
                 drafts.length === 0 ?
 
-                    <p>
-                        No drafts available
-                    </p>
-
+                    <p>No Drafts Available</p>
 
                     :
 
                     drafts.map((draft) => (
-
 
                         <DraftCard
 
@@ -45,21 +33,14 @@ function DraftList({
 
                         />
 
-
                     ))
-
 
             }
 
-
-
         </div>
-
 
     );
 
-
 }
-
 
 export default DraftList;

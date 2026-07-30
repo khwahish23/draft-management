@@ -1,56 +1,23 @@
-function DraftCard({
-    draft,
-    editDraft,
-    removeDraft
-}) {
-
-
+function DraftCard({ draft, editDraft, removeDraft }) {
     return (
-
         <div className="card">
-
-
             <h3>Draft</h3>
 
+            <p>{draft.content}</p>
 
-            <p>
-                {draft.content}
-            </p>
+            <small>{draft.created}</small>
 
+            <br /><br />
 
-            <small>
-                Created: {draft.date}
-            </small>
-
-
-            <br />
-
-
-            <button
-                onClick={() =>
-                    editDraft(draft)
-                }
-            >
+            <button onClick={() => editDraft(draft)}>
                 Edit
             </button>
 
-
-
-            <button
-                onClick={() =>
-                    removeDraft(draft.id)
-                }
-            >
+            <button onClick={() => removeDraft(draft.id)}>
                 Delete
             </button>
-
-
         </div>
-
     );
-
-
 }
-
 
 export default DraftCard;
