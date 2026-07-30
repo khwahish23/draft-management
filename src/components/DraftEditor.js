@@ -1,78 +1,47 @@
 import { useState } from "react";
 
-
 function DraftEditor({ addDraft }) {
-
 
     const [text, setText] = useState("");
 
-
-
-    const save = () => {
-
+    const handleSave = () => {
 
         if (text.trim() === "") {
-            alert("Write something first");
+            alert("Please write something!");
             return;
         }
 
-
-
-        const newDraft = {
-
+        const draft = {
             id: Date.now(),
-
             content: text,
-
-            date: new Date()
-                .toLocaleString()
-
+            created: new Date().toLocaleString(),
         };
 
-
-        addDraft(newDraft);
-
+        addDraft(draft);
 
         setText("");
-
     };
 
-
-
     return (
-
         <div className="editor">
 
-
-            <h2>Create Post Draft</h2>
-
+            <h2>Create Draft</h2>
 
             <textarea
-
-                placeholder="Write your post..."
-
+                rows="6"
+                placeholder="Write your post here..."
                 value={text}
-
-                onChange={(e) =>
-                    setText(e.target.value)
-                }
-
+                onChange={(e) => setText(e.target.value)}
             />
-
 
             <br />
 
-
-            <button onClick={save}>
+            <button onClick={handleSave}>
                 Save Draft
             </button>
 
-
         </div>
-
     );
-
 }
-
 
 export default DraftEditor;
